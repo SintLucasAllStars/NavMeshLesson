@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour {
 	public float patrolSpeed;
 	public float stamina;
 
+    public float detectionRate;
+
 	// Use this for initialization
 	void Start () {
 		nav = GetComponent<NavMeshAgent>();
@@ -31,12 +33,20 @@ public class EnemyAI : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+        Debug.Log(detectionRate);
 		bool canSee = canSeeTarget();
-
-		if(canSee && mode != Mode.Chase)
+        if (canSee == false && mode !=Mode.Chase && detectionRate >1)
+        {
+            detectionRate = detectionRate - 10 * Time.deltaTime;
+        }
+        if (canSee && mode != Mode.Chase)
 		{
-			SetMode(Mode.Chase);
-		}
+            detectionRate = detectionRate + 50 * Time.deltaTime;
+            if (detectionRate>99)
+            {
+                SetMode(Mode.Chase);
+            }
+        }
 
 		switch (mode)
 		{
@@ -119,6 +129,7 @@ public class EnemyAI : MonoBehaviour {
 				float angle = Vector3.Angle(transform.forward, direction);
 				if(angle < fov/2)
 				{
+
 					return true;
 				}
 				else
