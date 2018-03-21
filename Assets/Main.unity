@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.44657868, g: 0.49641263, b: 0.57481706, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
@@ -659,11 +659,6 @@ Prefab:
     - target: {fileID: 4705934725709510, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
       propertyPath: m_RootOrder
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 114032668393206030, guid: 596ad583237714b4fbccf6ca1ea3bf17,
-        type: 2}
-      propertyPath: target
-      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
@@ -1784,6 +1779,11 @@ Prefab:
     - target: {fileID: 1031439920944630, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
       propertyPath: m_Name
       value: TheDude (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032668393206030, guid: 596ad583237714b4fbccf6ca1ea3bf17,
+        type: 2}
+      propertyPath: reactionTime
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
@@ -3590,6 +3590,11 @@ Prefab:
       propertyPath: m_Name
       value: TheDude (5)
       objectReference: {fileID: 0}
+    - target: {fileID: 114032668393206030, guid: 596ad583237714b4fbccf6ca1ea3bf17,
+        type: 2}
+      propertyPath: reactionTime
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
   m_IsPrefabParent: 0
@@ -4715,6 +4720,11 @@ Prefab:
       propertyPath: m_Name
       value: TheDude (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 114032668393206030, guid: 596ad583237714b4fbccf6ca1ea3bf17,
+        type: 2}
+      propertyPath: reactionTime
+      value: 100
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
   m_IsPrefabParent: 0
@@ -4849,6 +4859,11 @@ Prefab:
     - target: {fileID: 1031439920944630, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
       propertyPath: m_Name
       value: TheDude (4)
+      objectReference: {fileID: 0}
+    - target: {fileID: 114032668393206030, guid: 596ad583237714b4fbccf6ca1ea3bf17,
+        type: 2}
+      propertyPath: reactionTime
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 596ad583237714b4fbccf6ca1ea3bf17, type: 2}
