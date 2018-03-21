@@ -15,6 +15,9 @@ public class EnemyAI : MonoBehaviour {
 	public float maxSpeed;
 	public float patrolSpeed;
 	public float stamina;
+    public int reactionTime;
+
+    public int timeSeen = 0;
 
 	// Use this for initialization
 	void Start () {
@@ -35,7 +38,12 @@ public class EnemyAI : MonoBehaviour {
 
 		if(canSee && mode != Mode.Chase)
 		{
+            timeSeen++;
+            if(timeSeen > reactionTime)
+            {
 			SetMode(Mode.Chase);
+                timeSeen = 0;
+            }
 		}
 
 		switch (mode)
