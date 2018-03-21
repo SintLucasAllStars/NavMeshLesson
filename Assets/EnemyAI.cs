@@ -11,13 +11,20 @@ public class EnemyAI : MonoBehaviour {
 
 	public Transform target;
 	public Light light;
-
 	public Mode mode;
+	public float maxSpeed;
+	public float patrolSpeed;
+	public float stamina;
 
 	// Use this for initialization
 	void Start () {
-		target = GameObject.FindGameObjectWithTag("Player").transform;
 		nav = GetComponent<NavMeshAgent>();
+
+		patrolSpeed = nav.speed;
+		maxSpeed = patrolSpeed * 2;
+		stamina = 1f;
+
+		target = GameObject.FindGameObjectWithTag("Player").transform;
 		SetMode(Mode.Patrol);
 		StartCoroutine(PatrolBehaviour());
 	}
@@ -26,10 +33,9 @@ public class EnemyAI : MonoBehaviour {
 	void Update () {
 		bool canSee = canSeeTarget();
 
-		if(canSee)
+		if(canSee && mode != Mode.Chase)
 		{
 			SetMode(Mode.Chase);
-			lastSeen = target.position;
 		}
 
 		switch (mode)
@@ -43,6 +49,10 @@ public class EnemyAI : MonoBehaviour {
 			}
 			break;
 		case Mode.Chase:
+			if(stamina > 0){
+				stamina -= 0.1f * Time.deltaTime;
+			}
+			nav.speed = patrolSpeed + (maxSpeed - patrolSpeed)*stamina;
 			if(canSee)
 			{
 				nav.SetDestination(target.position);
@@ -73,6 +83,8 @@ public class EnemyAI : MonoBehaviour {
 		switch (mode)
 		{
 		case Mode.Patrol:
+			nav.speed = patrolSpeed;
+			stamina = 1f;
 			light.color = Color.blue;
 			break;
 		case Mode.Search:
@@ -80,8 +92,18 @@ public class EnemyAI : MonoBehaviour {
 			light.color = Color.yellow;
 			break;
 		case Mode.Chase:
+			nav.speed = maxSpeed;
 			light.color = Color.red;
+			lastSeen = target.position;
+			CentralIntellignece.instance.Alert(gameObject);
 			break;
+		}
+	}
+
+	public void Alert(){
+		if(mode != Mode.Chase)
+		{
+			SetMode(Mode.Chase);
 		}
 	}
 
