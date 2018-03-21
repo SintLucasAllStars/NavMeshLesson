@@ -15,6 +15,7 @@ public class EnemyAI : MonoBehaviour {
 	public float maxSpeed;
 	public float patrolSpeed;
 	public float stamina;
+    float delay = 3f;
 
 	// Use this for initialization
 	void Start () {
@@ -90,6 +91,10 @@ public class EnemyAI : MonoBehaviour {
 		case Mode.Search:
 			nav.SetDestination(lastSeen);
 			light.color = Color.yellow;
+                if(delay <= 3)
+                {
+                    delay += 0.5f * Time.deltaTime;
+                }
 			break;
 		case Mode.Chase:
 			nav.speed = maxSpeed;
@@ -119,7 +124,15 @@ public class EnemyAI : MonoBehaviour {
 				float angle = Vector3.Angle(transform.forward, direction);
 				if(angle < fov/2)
 				{
-					return true;
+                    delay -= 1 * Time.deltaTime;
+                        if(delay < 0)
+                    {
+                        return true;
+                    }
+                        else
+                    {
+                        return false;
+                    }
 				}
 				else
 				{
