@@ -15,16 +15,18 @@ public class EnemyAI : MonoBehaviour {
 	public float maxSpeed;
 	public float patrolSpeed;
 	public float stamina;
+    public float laziness;
+    public float detection;
 
 	// Use this for initialization
 	void Start () {
 		nav = GetComponent<NavMeshAgent>();
-
+	    laziness = 0.8f;
 		patrolSpeed = nav.speed;
 		maxSpeed = patrolSpeed * 2;
-		stamina = 1f;
-
-		target = GameObject.FindGameObjectWithTag("Player").transform;
+		stamina = 1f - laziness;
+	    detection = 0;
+        target = GameObject.FindGameObjectWithTag("Player").transform;
 		SetMode(Mode.Patrol);
 		StartCoroutine(PatrolBehaviour());
 	}
@@ -35,8 +37,16 @@ public class EnemyAI : MonoBehaviour {
 
 		if(canSee && mode != Mode.Chase)
 		{
-			SetMode(Mode.Chase);
-		}
+		    if (detection< 100)
+		    {
+		        detection = detection + 1 * Time.deltaTime;
+		    }
+		    else
+		    {
+		        SetMode(Mode.Chase);
+
+            }
+        }
 
 		switch (mode)
 		{
