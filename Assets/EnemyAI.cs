@@ -16,6 +16,8 @@ public class EnemyAI : MonoBehaviour {
 	public float patrolSpeed;
 	public float stamina;
 
+	public float delay = 3f;
+
 	// Use this for initialization
 	void Start () {
 		nav = GetComponent<NavMeshAgent>();
@@ -116,17 +118,21 @@ public class EnemyAI : MonoBehaviour {
 		{
 			if(hit.collider.gameObject.CompareTag("Player"))
 			{
+				delay -= 1 * Time.deltaTime;
 				float angle = Vector3.Angle(transform.forward, direction);
-				if(angle < fov/2)
+				if(angle < fov/2 && delay < 0)
 				{
 					return true;
 				}
 				else
 				{
 					return false;
+				
 				}
 			} else 
 			{
+				
+						delay = 3f;
 				return false;
 			}
 		}
