@@ -327,6 +327,10 @@ MonoBehaviour:
   target: {fileID: 0}
   light: {fileID: 108463366009841398}
   mode: 0
+  maxSpeed: 0
+  patrolSpeed: 0
+  stamina: 0
+  laziness: 0
 --- !u!135 &135498792188493228
 SphereCollider:
   m_ObjectHideFlags: 1
